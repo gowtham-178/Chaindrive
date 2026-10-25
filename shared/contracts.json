@@ -1,0 +1,1793 @@
+{
+  "LicenseRegistry": {
+    "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+    "abi": [
+      {
+        "type": "constructor",
+        "stateMutability": "undefined",
+        "payable": false,
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "AccessControlBadConfirmation",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "AccessControlUnauthorizedAccount",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account"
+          },
+          {
+            "type": "bytes32",
+            "name": "neededRole"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "EnforcedPause",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "ExpectedPause",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "InvalidExpiry",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "LicenseAlreadyExists",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "LicenseAlreadyRevoked",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "LicenseNotFound",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "UnauthorizedAccess",
+        "inputs": []
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "LicenseIssued",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "owner",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "expiry",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "issuedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "LicenseRenewed",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "newExpiry",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "renewedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "LicenseRevoked",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash",
+            "indexed": true
+          },
+          {
+            "type": "string",
+            "name": "reason",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "revokedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "LicenseStatusChanged",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash",
+            "indexed": true
+          },
+          {
+            "type": "uint8",
+            "name": "oldStatus",
+            "indexed": false
+          },
+          {
+            "type": "uint8",
+            "name": "newStatus",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "changedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "LicenseSuspended",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash",
+            "indexed": true
+          },
+          {
+            "type": "string",
+            "name": "reason",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "suspendedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "Paused",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleAdminChanged",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "previousAdminRole",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "newAdminRole",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleGranted",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "sender",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleRevoked",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "sender",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "Unpaused",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "ADMIN_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "DEFAULT_ADMIN_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "getLicenseData",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "uint8",
+            "name": "status"
+          },
+          {
+            "type": "uint256",
+            "name": "expiry"
+          },
+          {
+            "type": "address",
+            "name": "owner"
+          },
+          {
+            "type": "uint256",
+            "name": "issuedAt"
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "getRoleAdmin",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "grantRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "hasRole",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "issueLicense",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "address",
+            "name": "owner"
+          },
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          },
+          {
+            "type": "uint256",
+            "name": "expiry"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "licenseExists",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": "exists"
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "pause",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "paused",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "renewLicense",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          },
+          {
+            "type": "uint256",
+            "name": "newExpiry"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "renounceRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "callerConfirmation"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "revokeLicense",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          },
+          {
+            "type": "string",
+            "name": "reason"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "revokeRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "supportsInterface",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes4",
+            "name": "interfaceId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "suspendLicense",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          },
+          {
+            "type": "string",
+            "name": "reason"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "unpause",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "verifyLicense",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "licenseHash"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": "isValid"
+          }
+        ]
+      }
+    ]
+  },
+  "ViolationManager": {
+    "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+    "abi": [
+      {
+        "type": "constructor",
+        "stateMutability": "undefined",
+        "payable": false,
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "AccessControlBadConfirmation",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "AccessControlUnauthorizedAccount",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account"
+          },
+          {
+            "type": "bytes32",
+            "name": "neededRole"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "CannotDisputePaidViolation",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "CannotDisputeResolvedViolation",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "EnforcedPause",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "ExpectedPause",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "InvalidFineAmount",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "InvalidStatus",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "UnauthorizedAccess",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "ViolationNotFound",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "ViolationNotPending",
+        "inputs": []
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "DisputeResolved",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId",
+            "indexed": true
+          },
+          {
+            "type": "bool",
+            "name": "upheld",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "adjustedFine",
+            "indexed": false
+          },
+          {
+            "type": "bytes32",
+            "name": "resolutionHash",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "resolvedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "Paused",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleAdminChanged",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "previousAdminRole",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "newAdminRole",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleGranted",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "sender",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleRevoked",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "sender",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "Unpaused",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "ViolationDisputed",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "disputeHash",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "disputedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "ViolationPaid",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "paidAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "ViolationRecorded",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "violationHash",
+            "indexed": false
+          },
+          {
+            "type": "address",
+            "name": "driver",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "officer",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "fineAmount",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "dueDate",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "recordedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "ADMIN_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "DEFAULT_ADMIN_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "OFFICER_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "disputeViolation",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          },
+          {
+            "type": "bytes32",
+            "name": "disputeHash"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "getRoleAdmin",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "getTotalViolations",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "uint256",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "getViolation",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": "violationHash"
+          },
+          {
+            "type": "address",
+            "name": "driver"
+          },
+          {
+            "type": "address",
+            "name": "officer"
+          },
+          {
+            "type": "uint256",
+            "name": "fineAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "dueDate"
+          },
+          {
+            "type": "uint8",
+            "name": "status"
+          },
+          {
+            "type": "bytes32",
+            "name": "disputeHash"
+          },
+          {
+            "type": "uint256",
+            "name": "recordedAt"
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "grantRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "hasRole",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "markAsPaid",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "pause",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "paused",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "recordViolation",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "violationHash"
+          },
+          {
+            "type": "address",
+            "name": "driver"
+          },
+          {
+            "type": "uint256",
+            "name": "fineAmount"
+          },
+          {
+            "type": "uint256",
+            "name": "dueDate"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "uint256",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "renounceRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "callerConfirmation"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "resolveDispute",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          },
+          {
+            "type": "bool",
+            "name": "upheld"
+          },
+          {
+            "type": "uint256",
+            "name": "adjustedFine"
+          },
+          {
+            "type": "bytes32",
+            "name": "resolutionHash"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "revokeRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "supportsInterface",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes4",
+            "name": "interfaceId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "unpause",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "violationExists",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      }
+    ]
+  },
+  "FinePayment": {
+    "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+    "abi": [
+      {
+        "type": "constructor",
+        "stateMutability": "undefined",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "address",
+            "name": "_violationManager"
+          },
+          {
+            "type": "address",
+            "name": "_treasury"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "AccessControlBadConfirmation",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "AccessControlUnauthorizedAccount",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account"
+          },
+          {
+            "type": "bytes32",
+            "name": "neededRole"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "AlreadyPaid",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "EnforcedPause",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "ExpectedPause",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "InvalidAddress",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "InvalidAmount",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "expected"
+          },
+          {
+            "type": "uint256",
+            "name": "received"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "ReentrancyGuardReentrantCall",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "TransferFailed",
+        "inputs": []
+      },
+      {
+        "type": "error",
+        "name": "ViolationNotFound",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ]
+      },
+      {
+        "type": "error",
+        "name": "ViolationNotPending",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "FinePaid",
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "payer",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "amount",
+            "indexed": false
+          },
+          {
+            "type": "uint256",
+            "name": "paidAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "Paused",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleAdminChanged",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "previousAdminRole",
+            "indexed": true
+          },
+          {
+            "type": "bytes32",
+            "name": "newAdminRole",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleGranted",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "sender",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "RoleRevoked",
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "sender",
+            "indexed": true
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "TreasuryUpdated",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "oldTreasury",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "newTreasury",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "updatedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "Unpaused",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "account",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "anonymous": false,
+        "name": "ViolationManagerUpdated",
+        "inputs": [
+          {
+            "type": "address",
+            "name": "oldManager",
+            "indexed": true
+          },
+          {
+            "type": "address",
+            "name": "newManager",
+            "indexed": true
+          },
+          {
+            "type": "uint256",
+            "name": "updatedAt",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "ADMIN_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "DEFAULT_ADMIN_ROLE",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "emergencyWithdraw",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "getFineAmount",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "uint256",
+            "name": "amount"
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "getRoleAdmin",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bytes32",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "grantRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "hasRole",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "isViolationPaid",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": "isPaid"
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "pause",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "paused",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "payFine",
+        "constant": false,
+        "stateMutability": "payable",
+        "payable": true,
+        "inputs": [
+          {
+            "type": "uint256",
+            "name": "violationId"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "renounceRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "callerConfirmation"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "revokeRole",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes32",
+            "name": "role"
+          },
+          {
+            "type": "address",
+            "name": "account"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "supportsInterface",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [
+          {
+            "type": "bytes4",
+            "name": "interfaceId"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "bool",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "treasury",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "address",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "function",
+        "name": "unpause",
+        "constant": false,
+        "payable": false,
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "updateTreasury",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "address",
+            "name": "newTreasury"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "updateViolationManager",
+        "constant": false,
+        "payable": false,
+        "inputs": [
+          {
+            "type": "address",
+            "name": "newManager"
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "type": "function",
+        "name": "violationManager",
+        "constant": true,
+        "stateMutability": "view",
+        "payable": false,
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "address",
+            "name": ""
+          }
+        ]
+      },
+      {
+        "type": "receive",
+        "stateMutability": "payable"
+      }
+    ]
+  },
+  "network": {
+    "name": "localhost",
+    "chainId": 31337
+  },
+  "deployedAt": "2026-10-25T05:33:14.943Z",
+  "deployer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+}

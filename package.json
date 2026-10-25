@@ -1,0 +1,32 @@
+{
+  "name": "chaindrive",
+  "version": "1.0.0",
+  "description": "Blockchain-based driving license and traffic management system",
+  "private": true,
+  "workspaces": [
+    "contracts",
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "dev:contracts": "npm run dev --workspace=contracts",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:all": "concurrently \"npm:dev:*\"",
+    "build:contracts": "npm run build --workspace=contracts",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:all": "npm run build:contracts && npm run build:backend && npm run build:frontend",
+    "test:contracts": "npm run test --workspace=contracts",
+    "test:backend": "npm run test --workspace=backend",
+    "seed": "npm run seed --workspace=backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
