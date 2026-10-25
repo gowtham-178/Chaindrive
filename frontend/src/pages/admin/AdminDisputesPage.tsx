@@ -127,7 +127,7 @@ export default function AdminDisputesPage() {
                               setResolvingDispute({ dispute: d, decision: 'accepted' })
                             }
                             disabled={isLoading}
-                            className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow-xs"
+                            className="px-3.5 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl shadow-xs transition-colors"
                           >
                             Accept (Dismiss Fine)
                           </button>
@@ -136,7 +136,7 @@ export default function AdminDisputesPage() {
                               setResolvingDispute({ dispute: d, decision: 'rejected' })
                             }
                             disabled={isLoading}
-                            className="px-3.5 py-1.5 border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-xl"
+                            className="px-3.5 py-1.5 border-2 border-red-300 bg-red-50 text-red-950 hover:bg-red-100 text-xs font-bold rounded-xl transition-colors"
                           >
                             Reject (Uphold Fine)
                           </button>
@@ -213,16 +213,16 @@ export default function AdminDisputesPage() {
                   <button
                     type="button"
                     onClick={() => setResolvingDispute(null)}
-                    className="px-4 py-2 border border-ink-200 text-ink-700 text-xs font-medium rounded-xl hover:bg-ink-50"
+                    className="px-4 py-2 border-2 border-ink-300 text-ink-950 text-xs font-bold rounded-xl hover:bg-ink-100 transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className={`px-5 py-2 text-white text-xs font-semibold rounded-xl shadow-sm ${
+                    className={`px-5 py-2 text-white text-xs font-bold rounded-xl shadow-sm transition-colors ${
                       resolvingDispute.decision === 'accepted'
-                        ? 'bg-emerald-600 hover:bg-emerald-700'
-                        : 'bg-red-600 hover:bg-red-700'
+                        ? 'bg-emerald-700 hover:bg-emerald-800'
+                        : 'bg-red-700 hover:bg-red-800'
                     }`}
                   >
                     Confirm Resolution

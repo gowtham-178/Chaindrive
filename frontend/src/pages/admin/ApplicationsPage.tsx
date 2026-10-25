@@ -191,16 +191,16 @@ export default function ApplicationsPage() {
                             <button
                               onClick={() => handleApprove(lic._id)}
                               disabled={isLoading}
-                              className="px-4 py-1.5 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white text-xs font-semibold rounded-xl transition-all shadow-xs"
+                              className="px-4 py-2 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-xs"
                             >
-                              {isLoading ? '...' : 'Approve'}
+                              {isLoading ? '...' : '✓ Approve'}
                             </button>
                             <button
                               onClick={() => setModalAction({ type: 'reject', licenseId: lic._id })}
                               disabled={isLoading}
-                              className="px-3.5 py-1.5 border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-xl transition-all"
+                              className="px-4 py-2 border-2 border-red-300 text-red-800 bg-red-50 hover:bg-red-100 text-xs font-bold rounded-xl transition-all"
                             >
-                              Reject
+                              ✕ Reject
                             </button>
                           </>
                         )}
@@ -209,7 +209,7 @@ export default function ApplicationsPage() {
                           <button
                             onClick={() => handleIssue(lic._id)}
                             disabled={isLoading}
-                            className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-semibold rounded-xl transition-all shadow-xs flex items-center gap-1.5"
+                            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5"
                           >
                             <span>⚡</span> {isLoading ? 'Minting...' : 'Issue On-Chain'}
                           </button>
@@ -220,14 +220,14 @@ export default function ApplicationsPage() {
                             <button
                               onClick={() => setModalAction({ type: 'suspend', licenseId: lic._id })}
                               disabled={isLoading}
-                              className="px-3 py-1.5 border border-amber-200 text-amber-700 hover:bg-amber-50 text-xs font-semibold rounded-xl"
+                              className="px-4 py-2 border-2 border-amber-300 text-amber-950 bg-amber-50 hover:bg-amber-100 text-xs font-bold rounded-xl transition-all"
                             >
                               Suspend
                             </button>
                             <button
                               onClick={() => setModalAction({ type: 'revoke', licenseId: lic._id })}
                               disabled={isLoading}
-                              className="px-3 py-1.5 border border-red-200 text-red-700 hover:bg-red-50 text-xs font-semibold rounded-xl"
+                              className="px-4 py-2 border-2 border-red-300 text-red-950 bg-red-50 hover:bg-red-100 text-xs font-bold rounded-xl transition-all"
                             >
                               Revoke
                             </button>

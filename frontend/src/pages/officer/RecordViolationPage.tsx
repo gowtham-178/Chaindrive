@@ -124,7 +124,7 @@ export default function RecordViolationPage() {
                 type="button"
                 onClick={checkLicense}
                 disabled={verifyingLicense}
-                className="px-4 py-2.5 bg-ink-100 hover:bg-ink-200 text-ink-800 text-xs font-semibold rounded-xl"
+                className="px-4 py-2.5 bg-ink-100 hover:bg-ink-200 text-black text-xs font-bold rounded-xl border border-ink-300"
               >
                 {verifyingLicense ? 'Checking...' : 'Lookup'}
               </button>
@@ -237,14 +237,14 @@ export default function RecordViolationPage() {
             <button
               type="button"
               onClick={() => navigate('/dashboard')}
-              className="px-5 py-2.5 rounded-xl border border-ink-200 text-ink-700 text-sm font-medium hover:bg-ink-50 transition-colors"
+              className="px-5 py-2.5 rounded-xl border-2 border-ink-300 text-ink-950 text-sm font-bold hover:bg-ink-100 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white text-sm font-semibold transition-all shadow-md active:scale-95"
+              className="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white text-sm font-bold transition-all shadow-md active:scale-95"
             >
               {loading ? 'Recording On-Chain...' : 'Record Violation'}
             </button>

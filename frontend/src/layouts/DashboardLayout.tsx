@@ -45,32 +45,32 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   };
 
   const roleColor = {
-    admin: 'bg-purple-100 text-purple-700',
-    officer: 'bg-blue-100 text-blue-700',
-    driver: 'bg-teal-100 text-teal-700',
+    admin: 'bg-purple-100 text-purple-900 border border-purple-300 font-bold',
+    officer: 'bg-blue-100 text-blue-900 border border-blue-300 font-bold',
+    driver: 'bg-teal-100 text-teal-900 border border-teal-300 font-bold',
   }[user?.role ?? 'driver'];
 
   return (
     <div className="min-h-screen bg-paper flex">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-ink-950 text-white flex flex-col transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white text-ink-950 border-r border-ink-200 flex flex-col shadow-sm transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Logo */}
-        <div className="h-16 px-6 flex items-center border-b border-ink-800">
-          <div className="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center text-white font-bold text-sm mr-3 flex-shrink-0">
+        <div className="h-16 px-6 flex items-center border-b border-ink-200 bg-white">
+          <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-sm mr-3 flex-shrink-0 shadow-xs">
             CD
           </div>
-          <span className="font-lora font-semibold text-white text-lg">ChainDrive</span>
+          <span className="font-lora font-bold text-ink-950 text-xl tracking-tight">ChainDrive</span>
         </div>
 
         {/* User info */}
-        <div className="px-4 py-4 border-b border-ink-800">
-          <p className="text-sm font-medium text-white truncate">{user?.profile.fullName}</p>
-          <p className="text-xs text-ink-400 truncate mt-0.5">{user?.email}</p>
-          <span className={`mt-2 inline-block text-xs font-medium px-2 py-0.5 rounded-full ${roleColor}`}>
+        <div className="px-5 py-4 border-b border-ink-200 bg-ink-50/70">
+          <p className="text-sm font-bold text-black truncate">{user?.profile.fullName || user?.email}</p>
+          <p className="text-xs text-ink-700 font-semibold truncate mt-0.5">{user?.email}</p>
+          <span className={`mt-2 inline-block text-xs uppercase tracking-wider px-2.5 py-0.5 rounded-full ${roleColor}`}>
             {user?.role}
           </span>
         </div>
@@ -85,14 +85,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <Link
                     to={item.to}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm transition-all ${
                       active
-                        ? 'bg-teal-600 text-white'
-                        : 'text-ink-300 hover:bg-ink-800 hover:text-white'
+                        ? 'bg-teal-600 text-white font-bold shadow-xs'
+                        : 'text-ink-900 hover:text-black hover:bg-ink-100 font-bold'
                     }`}
                   >
                     <span className="text-base">{item.icon}</span>
-                    {item.label}
+                    <span>{item.label}</span>
                   </Link>
                 </li>
               );
@@ -101,16 +101,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* Bottom actions */}
-        <div className="px-3 py-4 border-t border-ink-800 space-y-2">
+        <div className="px-3 py-4 border-t border-ink-200 space-y-1.5 bg-ink-50/40">
           <Link
             to="/verify"
-            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-ink-400 hover:text-white hover:bg-ink-800 transition-colors"
+            className="flex items-center gap-3 px-3.5 py-2 rounded-xl text-sm font-bold text-ink-900 hover:bg-ink-100 hover:text-black transition-colors"
           >
             <span>🔍</span> Verify License
           </Link>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-ink-400 hover:text-white hover:bg-red-900/50 transition-colors"
+            className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-sm font-bold text-red-700 hover:bg-red-50 hover:text-red-900 transition-colors"
           >
             <span>🚪</span> Sign out
           </button>
@@ -130,7 +130,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Top bar */}
         <header className="h-16 bg-white border-b border-ink-200 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-30">
           <button
-            className="lg:hidden p-2 rounded-lg text-ink-600 hover:bg-ink-100"
+            className="lg:hidden p-2 rounded-lg text-ink-800 hover:bg-ink-100 text-xl font-bold"
             onClick={() => setSidebarOpen(true)}
           >
             ☰
@@ -142,20 +142,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           {isConnected ? (
             <div className="flex items-center gap-2">
               {!isCorrectNetwork && (
-                <span className="text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full font-medium">
+                <span className="text-xs text-amber-800 bg-amber-50 border border-amber-300 px-2.5 py-1 rounded-full font-bold">
                   ⚠️ Wrong network
                 </span>
               )}
-              <span className="text-xs font-mono bg-teal-50 text-teal-700 px-3 py-1.5 rounded-full border border-teal-200">
+              <span className="text-xs font-mono font-bold bg-teal-50 text-teal-900 px-3.5 py-1.5 rounded-full border border-teal-300">
                 {formatAddress(account!)}
               </span>
             </div>
           ) : (
             <button
               onClick={connectWallet}
-              className="text-sm px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-colors font-medium flex items-center gap-2"
+              className="text-xs sm:text-sm px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-500 text-black transition-all font-bold flex items-center gap-2 shadow-xs"
             >
-              🦊 Connect Wallet
+              <span>🦊</span> Connect Wallet
             </button>
           )}
         </header>

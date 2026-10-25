@@ -68,7 +68,7 @@ export default function DashboardPage() {
           {!isConnected ? (
             <button
               onClick={connectWallet}
-              className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-xl flex items-center gap-2 shadow-sm transition-all"
+              className="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-black text-xs font-bold rounded-xl flex items-center gap-2 shadow-xs transition-all"
             >
               <span>🦊</span> Connect MetaMask for Web3 Transactions
             </button>
