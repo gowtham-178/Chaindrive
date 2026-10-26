@@ -89,10 +89,10 @@ export default function LandingPage() {
                 ⚡
               </div>
               <h2 className="font-lora text-xl font-semibold text-ink-900 mb-2">
-                MetaMask Fine Payments
+                Instant Fine Payments
               </h2>
               <p className="text-sm text-ink-600 leading-relaxed">
-                Pay traffic fines straight through your Web3 wallet in real-time. Automated ReentrancyGuard contracts ensure exact amounts, no double charges, and instant receipt generation.
+                Pay traffic fines directly with a single click. Automated smart contracts verify settlement on-chain in real-time, preventing double charges and generating immutable receipts.
               </p>
             </div>
 

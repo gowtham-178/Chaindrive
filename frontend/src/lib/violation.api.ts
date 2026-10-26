@@ -35,9 +35,9 @@ export async function getViolationById(id: string): Promise<Violation> {
 
 export async function payViolation(
   id: string,
-  data: { payerAddress: string; txHash: string; blockNumber?: number }
+  data?: { payerAddress?: string; txHash?: string; blockNumber?: number }
 ): Promise<Payment> {
-  const res = await client.post<ApiResponse<Payment>>(`/api/violations/${id}/pay`, data);
+  const res = await client.post<ApiResponse<Payment>>(`/api/violations/${id}/pay`, data || {});
   return res.data.data;
 }
 

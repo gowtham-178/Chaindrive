@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ethers, Contract } from 'ethers';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import { useWallet } from '../../contexts/WalletContext';
 import { getViolations, payViolation, disputeViolation, verifyViolationIntegrity } from '../../lib/violation.api';
 import { Violation } from '../../types';
-import contractsJson from '../../../../shared/contracts.json';
 
 export default function MyViolationsPage() {
-  const { account, isConnected, connectWallet, getSigner } = useWallet();
-
   const [violations, setViolations] = useState<Violation[]>([]);
   const [loading, setLoading] = useState(true);
   const [payingId, setPayingId] = useState<string | null>(null);
@@ -45,44 +40,12 @@ export default function MyViolationsPage() {
     setPayingId(v._id);
 
     try {
-      if (!isConnected || !account) {
-        await connectWallet();
-      }
-
-      const signer = await getSigner();
-      if (!signer) {
-        throw new Error('MetaMask wallet signer could not be acquired');
-      }
-
-      // Instantiate FinePayment contract
-      const finePaymentContract = new Contract(
-        contractsJson.FinePayment.address,
-        contractsJson.FinePayment.abi,
-        signer
-      );
-
-      // On-chain payment transaction
-      const fineWei = BigInt(v.fineAmountWei || '0');
-      const onChainId = v.onChainViolationId ?? 0;
-
-      const tx = await finePaymentContract['payFine'](onChainId, {
-        value: fineWei,
-      });
-
-      const receipt = await tx.wait();
-
-      // Update backend status with receipt
-      await payViolation(v._id, {
-        payerAddress: account || (await signer.getAddress()),
-        txHash: receipt.hash,
-        blockNumber: receipt.blockNumber,
-      });
-
-      setActionSuccess(`Payment completed! Tx: ${receipt.hash.slice(0, 10)}…`);
+      const res = await payViolation(v._id);
+      setActionSuccess(`Payment completed successfully! Tx: ${res.txHash ? res.txHash.slice(0, 10) + '…' : 'Confirmed'}`);
       await loadData();
     } catch (err: any) {
       console.error('Payment error:', err);
-      setActionError(err?.reason || err?.message || 'Payment transaction failed');
+      setActionError(err?.response?.data?.message || err?.message || 'Payment transaction failed');
     } finally {
       setPayingId(null);
     }
@@ -131,7 +94,7 @@ export default function MyViolationsPage() {
             Traffic Violations &amp; Fines
           </h1>
           <p className="text-sm text-ink-500 mt-1">
-            Review citations, pay fines directly via MetaMask, or submit cryptographic dispute appeals.
+            Review citations, pay fines securely with a single click, or submit dispute appeals.
           </p>
         </div>
 
@@ -228,8 +191,8 @@ export default function MyViolationsPage() {
                           <div className="text-lg font-bold text-ink-950">
                             ₹{v.fineAmountInr.toLocaleString()}
                           </div>
-                          <div className="text-xs font-mono text-ink-400">
-                            ≈ {ethers.formatEther(v.fineAmountWei || '0').slice(0, 7)} ETH
+                          <div className="text-xs text-ink-400">
+                            Traffic Citation Fine
                           </div>
                         </div>
 
@@ -241,7 +204,7 @@ export default function MyViolationsPage() {
                                 disabled={payingId === v._id}
                                 className="px-4 py-2 bg-teal-700 hover:bg-teal-800 disabled:opacity-50 text-white text-xs font-bold rounded-xl shadow-sm transition-all"
                               >
-                                {payingId === v._id ? 'Processing...' : 'Pay with MetaMask'}
+                                {payingId === v._id ? 'Processing Payment...' : 'Pay Fine'}
                               </button>
                               <button
                                 onClick={() => setDisputingViolation(v)}

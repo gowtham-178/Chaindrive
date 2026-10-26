@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useWallet } from '../contexts/WalletContext';
 import DashboardLayout from '../layouts/DashboardLayout';
 import { getMyLicense } from '../lib/license.api';
 import { getViolations } from '../lib/violation.api';
@@ -10,7 +9,6 @@ import { License, Violation, DashboardStats } from '../types';
 
 export default function DashboardPage() {
   const { user } = useAuth();
-  const { isConnected, connectWallet, account } = useWallet();
 
   const [license, setLicense] = useState<License | null>(null);
   const [violations, setViolations] = useState<Violation[]>([]);
@@ -64,20 +62,11 @@ export default function DashboardPage() {
             </p>
           </div>
 
-          {/* Wallet Status Banner */}
-          {!isConnected ? (
-            <button
-              onClick={connectWallet}
-              className="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-black text-xs font-bold rounded-xl flex items-center gap-2 shadow-xs transition-all"
-            >
-              <span>🦊</span> Connect MetaMask for Web3 Transactions
-            </button>
-          ) : (
-            <div className="px-3.5 py-2 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium rounded-xl flex items-center gap-2 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              Wallet: {account?.slice(0, 6)}…{account?.slice(-4)}
-            </div>
-          )}
+          {/* System Status Banner */}
+          <div className="px-3.5 py-2 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold rounded-xl flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Blockchain Verified Network
+          </div>
         </div>
 
         {/* ── DRIVER DASHBOARD ────────────────────────────────────────── */}

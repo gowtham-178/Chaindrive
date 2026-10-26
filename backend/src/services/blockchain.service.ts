@@ -199,6 +199,11 @@ export class BlockchainService {
     return await this.finePayment['isViolationPaid'](violationId);
   }
 
+  async payFine(violationId: number, amountWei: bigint): Promise<TransactionReceipt> {
+    const tx = await this.finePayment['payFine'](violationId, { value: amountWei });
+    return await tx.wait();
+  }
+
   // ── Role management ────────────────────────────────────────────────────────
 
   async grantOfficerRole(address: string): Promise<TransactionReceipt> {

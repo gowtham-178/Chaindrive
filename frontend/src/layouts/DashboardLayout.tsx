@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useWallet } from '../contexts/WalletContext';
 
 interface NavItem {
   label: string;
@@ -32,7 +31,6 @@ function formatAddress(address: string) {
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
-  const { account, isConnected, isCorrectNetwork, connectWallet } = useWallet();
   const location = useLocation();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -138,26 +136,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
           <div className="flex-1" />
 
-          {/* Wallet button */}
-          {isConnected ? (
-            <div className="flex items-center gap-2">
-              {!isCorrectNetwork && (
-                <span className="text-xs text-amber-800 bg-amber-50 border border-amber-300 px-2.5 py-1 rounded-full font-bold">
-                  ⚠️ Wrong network
-                </span>
-              )}
-              <span className="text-xs font-mono font-bold bg-teal-50 text-teal-900 px-3.5 py-1.5 rounded-full border border-teal-300">
-                {formatAddress(account!)}
-              </span>
-            </div>
-          ) : (
-            <button
-              onClick={connectWallet}
-              className="text-xs sm:text-sm px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-500 text-black transition-all font-bold flex items-center gap-2 shadow-xs"
-            >
-              <span>🦊</span> Connect Wallet
-            </button>
-          )}
+          {/* Blockchain status */}
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Blockchain Verified
+            </span>
+          </div>
         </header>
 
         {/* Page content */}

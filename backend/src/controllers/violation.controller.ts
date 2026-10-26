@@ -20,8 +20,8 @@ const recordViolationSchema = z.object({
 });
 
 const payViolationSchema = z.object({
-  payerAddress: z.string().min(40),
-  txHash: z.string().min(64),
+  payerAddress: z.string().optional(),
+  txHash: z.string().optional(),
   blockNumber: z.number().optional(),
 });
 
